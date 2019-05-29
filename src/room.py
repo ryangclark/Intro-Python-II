@@ -10,3 +10,6 @@ class Room:
         self.n_to = n_to
         self.s_to = s_to
         self.w_to = w_to
+
+    def __getitem__(self, key):
+        return getattr(self, key)

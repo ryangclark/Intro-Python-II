@@ -1,6 +1,6 @@
 from player import Player
 from room import Room
-from textwrap import wrap
+from textwrap import fill
 
 # Declare all the rooms
 
@@ -55,16 +55,18 @@ player = Player('One', room['outside'])
 # If the user enters "q", quit the game.
 
 # Initial display
-print(f'Current Room: {player.current_room}')
-print(wrap(player.current_room.description))
+print('\n')
+print(f'Current Room: {player.current_room.name}')
+print(fill(player.current_room.description))
 
 while True:
+    print('\n')
     cmd = input('Enter Action: ')
     if cmd in ['n', 's', 'e', 'w']:
         if player.current_room[f'{cmd}_to']:
             player.current_room = player.current_room[f'{cmd}_to']
-            print(f'Current Room: {player.current_room}')
-            print(wrap(player.current_room.description))
+            print(f'Current Room: {player.current_room.name}')
+            print(fill(player.current_room.description))
         else:
             print(f'Cannot move {cmd}')
     elif cmd == 'q':
