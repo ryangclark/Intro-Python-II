@@ -1,4 +1,6 @@
+from player import Player
 from room import Room
+from textwrap import wrap
 
 # Declare all the rooms
 
@@ -39,6 +41,8 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
+player = Player('One', room['outside'])
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -49,3 +53,22 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+# Initial display
+print(f'Current Room: {player.current_room}')
+print(wrap(player.current_room.description))
+
+while True:
+    cmd = input('Enter Action: ')
+    if cmd in ['n', 's', 'e', 'w']:
+        if player.current_room[f'{cmd}_to']:
+            player.current_room = player.current_room[f'{cmd}_to']
+            print(f'Current Room: {player.current_room}')
+            print(wrap(player.current_room.description))
+        else:
+            print(f'Cannot move {cmd}')
+    elif cmd == 'q':
+        print('Thanks for playing!')
+        break
+    else:
+        print('Command not recognized')
