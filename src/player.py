@@ -3,6 +3,7 @@
 
 
 class Player:
-    def __init__(self, name, current_room):
+    def __init__(self, name, current_room, inventory=[]):
         self.current_room = current_room
         self.name = name
+        self.inventory = inventory
